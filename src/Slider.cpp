@@ -42,7 +42,7 @@ namespace ui {
 	{
 		if (m_pressed)
 		{
-			m_value = map((sf::Mouse::getPosition(window).x - window.mapCoordsToPixel(m_body.getPosition()).x - m_offset), 0.f, m_body.getSize().x - m_slider.getSize().x, 0.f, 1.f);
+			m_value = map((window.mapPixelToCoords(sf::Mouse::getPosition(window)).x - m_body.getPosition().x - m_offset), 0.f, m_body.getSize().x - m_slider.getSize().x, 0.f, 1.f);
 
 			if (m_value < 0)
 			{
