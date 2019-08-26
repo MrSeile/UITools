@@ -37,11 +37,12 @@ namespace ui
 		void SetSize(const float& width, const float& heigth);
 		void SetSize(const sf::Vector2f& size);
 		void SetStep(const float& step);
+		void SetRange(const sf::Vector2f& range);
 
-		void ShowValue();
-		void HideValue();
+		void ShowValue(bool show);
 
 		// Get
+		sf::Vector2f GetRange();
 		sf::RectangleShape& GetBody();
 		sf::RectangleShape& GetHandle();
 		sf::Text& GetText();

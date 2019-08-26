@@ -112,14 +112,19 @@ namespace ui {
 		m_step = step;
 	}
 
-	void Slider::ShowValue()
+	void Slider::SetRange(const sf::Vector2f& range)
 	{
-		m_showValue = true;
+		m_range = range;
 	}
 
-	void Slider::HideValue()
+	void Slider::ShowValue(bool show)
 	{
-		m_showValue = false;
+		m_showValue = show;
+	}
+
+	sf::Vector2f Slider::GetRange()
+	{
+		return m_range;
 	}
 
 	sf::RectangleShape& Slider::GetBody()
