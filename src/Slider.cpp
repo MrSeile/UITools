@@ -142,12 +142,12 @@ namespace ui {
 		return m_text;
 	}
 
-	float Slider::GetValue()
+	float Slider::GetValue() const
 	{
 		return map(m_value, 0.f, 1.f, m_range.x, m_range.y);
 	}
 
-	bool Slider::IsPressed()
+	bool Slider::IsPressed() const
 	{
 		return m_pressed;
 	}

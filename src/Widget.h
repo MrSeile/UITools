@@ -14,12 +14,12 @@ namespace ui
 	class Widget
 	{
 	private:
+		std::vector<ui::UIObject*> m_objects;
 
 	public:
 		Widget();
 		~Widget();
 
-		std::vector<ui::UIObject*> m_objects;
 
 		void Update(const sf::RenderWindow& window);
 		void CheckInput(const sf::RenderWindow& window, const sf::Event& e);
@@ -28,6 +28,8 @@ namespace ui
 		void Clear();
 
 		void AddObject(ui::UIObject* newObject);
+
+		const std::vector<ui::UIObject*>& GetObjects();
 
 		template<typename T>
 		T* Get(const std::string& id);
@@ -45,9 +47,7 @@ namespace ui
 				continue;
 
 			if (y->id == id)
-			{
 				return y;
-			}
 		}
 		return nullptr;
 	}

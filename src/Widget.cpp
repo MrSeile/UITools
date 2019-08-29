@@ -22,6 +22,11 @@ namespace ui {
 		m_objects.push_back(newObject);
 	}
 
+	const std::vector<ui::UIObject*>& Widget::GetObjects()
+	{
+		return m_objects;
+	}
+
 	UIObject * Widget::GetUIObject(const std::string& id)
 	{
 		for (UIObject* x : m_objects)
@@ -38,17 +43,13 @@ namespace ui {
 	void Widget::Draw(sf::RenderWindow& window)
 	{
 		for (UIObject* o : m_objects)
-		{
 			o->Draw(window);
-		}
 	}
 
 	void Widget::BeginPlay()
 	{
 		for (UIObject* o : m_objects)
-		{
 			o->BeginPlay();
-		}
 	}
 
 	void Widget::CheckInput(const sf::RenderWindow& window, const sf::Event& e)
@@ -65,9 +66,7 @@ namespace ui {
 	void Widget::Update(const sf::RenderWindow& window)
 	{
 		for (UIObject* o : m_objects)
-		{
 			o->Update(window);
-		}
 	}
 
 }

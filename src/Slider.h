@@ -1,7 +1,5 @@
 #pragma once
 
-#define m_SLIDER
-
 #include "Global.h"
 #include "UIObject.h"
 #include "Interactuable.h"
@@ -48,7 +46,7 @@ namespace ui
 		sf::Text& GetText();
 
 		// Get
-		float GetValue();
-		bool IsPressed();
+		float GetValue() const;
+		bool IsPressed() const;
 	};
 }
