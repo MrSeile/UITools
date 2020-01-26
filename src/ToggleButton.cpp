@@ -1,8 +1,8 @@
-#include "Button.h"
+#include "ToggleButton.h"
 
 namespace ui {
 
-	Button::Button(const std::string& id)
+	ToggleButton::ToggleButton(const std::string& id)
 		: UIObject(id)
 	{
 		text.setFillColor(sf::Color::Black);
@@ -12,22 +12,23 @@ namespace ui {
 		shape.setOutlineColor(sf::Color::Black);
 	}
 
-	void Button::CheckInput(const sf::RenderWindow& window, ui::Event& e)
+	void ToggleButton::CheckInput(const sf::RenderWindow& window, ui::Event& e)
 	{
 		if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
 		{
+			m_pressed = m_pressed ? false : true;
 
 			if (shape.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))) && m_able && m_hasClickFuncion && !e.handled)
 			{
 				if (m_blockEvent)
 					e.handled = true;
 
-				m_clickFunction(this);
+				m_clickFunction(this, m_pressed);
 			}
 		}
 	}
 
-	void Button::Update(const sf::RenderWindow& window)
+	void ToggleButton::Update(const sf::RenderWindow& window)
 	{
 		text.setPosition(shape.getPosition().x + (shape.getGlobalBounds().width / 2.f) - (text.getGlobalBounds().width / 2.f),
 			shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - (text.getGlobalBounds().height / 1.f));
@@ -38,35 +39,42 @@ namespace ui {
 		}
 	}
 
-	void Button::SetClickFunction(const std::function<void(UIObject* self)>& function)
+	void ToggleButton::SetClickFunction(const std::function<void(UIObject * self, bool pressed)>& function)
 	{
 		m_hasClickFuncion = true;
 		m_clickFunction = function;
 	}
 
-	bool Button::GetAble()
+	bool ToggleButton::GetAble()
 	{
 		return m_able;
 	}
 
-	void Button::SetAble(const bool& able)
+	void ToggleButton::SetAble(bool able)
 	{
 		m_able = able;
 		text.setFillColor(able ? sf::Color(0, 0, 0) : sf::Color(200, 200, 200));
 	}
 
-	sf::Vector2f Button::GetPosition()
+	void ToggleButton::SetPressed(bool pressed, bool update)
+	{
+		m_pressed = pressed;
+		if (update && m_hasClickFuncion)
+			m_clickFunction(this, m_pressed);
+	}
+
+	sf::Vector2f ToggleButton::GetPosition()
 	{
 		return shape.getPosition();
 	}
 
-	std::function<void(Button* self)> Button::GetClickEvent()
+	std::function<void(ToggleButton* self, bool pressed)> ToggleButton::GetClickEvent()
 	{
 		return m_clickFunction;
 	}
 
 
-	void Button::Draw(sf::RenderWindow& window)
+	void ToggleButton::Draw(sf::RenderWindow& window)
 	{
 		window.draw(shape);
 		window.draw(text);

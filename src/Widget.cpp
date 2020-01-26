@@ -52,7 +52,7 @@ namespace ui {
 			o->BeginPlay();
 	}
 
-	void Widget::CheckInput(const sf::RenderWindow& window, const sf::Event& e)
+	void Widget::CheckInput(const sf::RenderWindow& window, ui::Event& e)
 	{
 		for (UIObject* o : m_objects)
 		{

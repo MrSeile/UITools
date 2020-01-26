@@ -24,7 +24,7 @@ namespace ui
 		Slider(const std::string& id, const sf::Font& font);
 
 		// General
-		void CheckInput(const sf::RenderWindow& window, const sf::Event& e) override;
+		void CheckInput(const sf::RenderWindow& window, ui::Event& e) override;
 		void Update(const sf::RenderWindow& window) override;
 		void Draw(sf::RenderWindow& window) override;
 

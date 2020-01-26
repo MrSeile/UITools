@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\Circle.h" />
     <ClInclude Include="src\Global.h" />
@@ -31,9 +32,11 @@
     <ClInclude Include="src\Text.h" />
     <ClInclude Include="src\UIObject.h" />
     <ClInclude Include="src\Widget.h" />
+    <ClInclude Include="src\ToggleButton.h" />
     <ClInclude Include="UITools.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Event.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Circle.cpp" />
     <ClCompile Include="src\Graph.cpp" />
@@ -45,6 +48,7 @@
     <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\UIObject.cpp" />
     <ClCompile Include="src\Widget.cpp" />
+    <ClCompile Include="src\ToggleButton.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -122,6 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)vendor\SFML x64\include;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

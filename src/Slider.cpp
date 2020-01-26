@@ -16,17 +16,17 @@ namespace ui {
 		m_text.setFillColor(sf::Color::White);
 	}
 
-	void Slider::CheckInput(const sf::RenderWindow& window, const sf::Event& e)
+	void Slider::CheckInput(const sf::RenderWindow& window, ui::Event& e)
 	{
-		if (e.type == sf::Event::MouseButtonPressed)
+		if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
 		{
-			if (e.key.code == sf::Mouse::Left)
+			if (m_slider.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))) && !e.handled)
 			{
-				if (m_slider.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
-				{
-					m_pressed = true;
-					m_offset = (float)(sf::Mouse::getPosition(window).x - window.mapCoordsToPixel(m_slider.getPosition()).x);
-				}
+				if (m_blockEvent)
+					e.handled = true;
+
+				m_pressed = true;
+				m_offset = (float)(sf::Mouse::getPosition(window).x - window.mapCoordsToPixel(m_slider.getPosition()).x);
 			}
 		}
 		if (e.type == sf::Event::MouseButtonReleased)

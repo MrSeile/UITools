@@ -6,6 +6,11 @@ namespace ui {
 	{
 	}
 
+	void Interactuable::BlockEvent(bool block)
+	{
+		m_blockEvent = block;
+	}
+
 	Interactuable::~Interactuable()
 	{
 	}

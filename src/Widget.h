@@ -8,6 +8,8 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Graph.h"
+#include "ToggleButton.h"
+#include "Event.h"
 
 namespace ui
 {
@@ -22,7 +24,7 @@ namespace ui
 
 
 		void Update(const sf::RenderWindow& window);
-		void CheckInput(const sf::RenderWindow& window, const sf::Event& e);
+		void CheckInput(const sf::RenderWindow& window, ui::Event& e);
 		void Draw(sf::RenderWindow& window);
 		void BeginPlay();
 		void Clear();
