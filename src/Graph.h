@@ -50,7 +50,9 @@ namespace ui {
 		sf::Vector2f MapPosToCoords(const sf::Vector2f& pos);
 		sf::Vector2f MapCoordsToPos(const sf::Vector2f& coords);
 
-		void Clear();
+		void ClearAll();
+		void ClearArrows();
+		void ClearPlots();
 
 		//void Recalculate();
 		void Plot(const std::vector<sf::Vector2f>& data, const PlotDef& props = PlotDef());

@@ -155,6 +155,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)vendor\SFML x64\include;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML x64\lib</AdditionalLibraryDirectories>

@@ -67,10 +67,20 @@ namespace ui {
 		};
 	}
 
-	void Graph::Clear()
+	void Graph::ClearAll()
 	{
 		m_plots.clear();
 		m_arrows.clear();
+	}
+
+	void Graph::ClearArrows()
+	{
+		m_arrows.clear();
+	}
+
+	void Graph::ClearPlots()
+	{
+		m_plots.clear();
 	}
 
 	void Graph::Plot(const std::vector<sf::Vector2f>& data, const PlotDef& props)
