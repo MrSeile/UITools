@@ -16,10 +16,11 @@ namespace ui {
 	{
 		if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
 		{
-			m_pressed = m_pressed ? false : true;
 
 			if (shape.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))) && m_able && m_hasClickFuncion && !e.handled)
 			{
+				m_pressed = m_pressed ? false : true;
+
 				if (m_blockEvent)
 					e.handled = true;
 
