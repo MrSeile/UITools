@@ -64,7 +64,7 @@ namespace ui {
 			m_clickFunction(this, m_pressed);
 	}
 
-	sf::Vector2f ToggleButton::GetPosition()
+	ui::Vec2f ToggleButton::GetPosition()
 	{
 		return shape.getPosition();
 	}

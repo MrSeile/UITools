@@ -13,7 +13,7 @@ namespace ui
 		float m_value = 0;
 		float m_offset = 0;
 		bool m_showValue = true;
-		sf::Vector2f m_range = { 0, 255 };
+		ui::Vec2f m_range = { 0, 255 };
 		float m_step = 0.1f;
 
 		sf::RectangleShape m_slider;
@@ -30,17 +30,17 @@ namespace ui
 
 		// Set
 		void SetValue(const float& value);
-		void SetPosition(const sf::Vector2f& position);
+		void SetPosition(const ui::Vec2f& position);
 		void SetPosition(const float& x, const float& y);
 		void SetSize(const float& width, const float& heigth);
-		void SetSize(const sf::Vector2f& size);
+		void SetSize(const ui::Vec2f& size);
 		void SetStep(const float& step);
-		void SetRange(const sf::Vector2f& range);
+		void SetRange(const ui::Vec2f& range);
 
 		void ShowValue(bool show);
 
 		// Get
-		sf::Vector2f GetRange();
+		ui::Vec2f GetRange();
 		sf::RectangleShape& GetBody();
 		sf::RectangleShape& GetHandle();
 		sf::Text& GetText();

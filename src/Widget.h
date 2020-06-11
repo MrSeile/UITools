@@ -8,6 +8,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Graph.h"
+#include "InteractiveGraph.h"
 #include "ToggleButton.h"
 #include "Event.h"
 
@@ -40,7 +41,7 @@ namespace ui
 	};
 
 	template<typename T>
-	inline T * Widget::Get(const std::string & id)
+	inline T * Widget::Get(const std::string& id)
 	{
 		for (ui::UIObject* x : m_objects)
 		{

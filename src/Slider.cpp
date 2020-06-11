@@ -8,9 +8,9 @@ namespace ui {
 		m_body.setFillColor(sf::Color::White);
 		m_body.setOutlineColor(sf::Color::Black);
 		m_body.setOutlineThickness(1);
-		m_body.setSize(sf::Vector2f(500, 20));
+		m_body.setSize(ui::Vec2f(500, 20));
 		m_slider.setFillColor(sf::Color::Red);
-		m_slider.setSize(sf::Vector2f(10, 20));
+		m_slider.setSize(ui::Vec2f(10, 20));
 
 		m_text.setFont(font);
 		m_text.setFillColor(sf::Color::White);
@@ -53,7 +53,7 @@ namespace ui {
 				m_value = 1;
 			}
 
-			m_value = map(snap(map(m_value, 0.f, 1.f, m_range.x, m_range.y), m_step), m_range.x, m_range.y, 0.f, 1.f);
+			m_value = map(snap(map(m_value, 0.f, 1.f, m_range.min, m_range.max), m_step), m_range.min, m_range.max, 0.f, 1.f);
 		}
 
 		if (m_hasCustomUpdateFunction)
@@ -63,11 +63,11 @@ namespace ui {
 
 		m_text.setCharacterSize((uint)(m_body.getSize().y + m_body.getSize().y * 0.3f));
 		std::stringstream text;
-		text << std::fixed << std::setprecision(3) << map(m_value, 0.f, 1.f, m_range.x, m_range.y);
+		text << std::fixed << std::setprecision(3) << map(m_value, 0.f, 1.f, m_range.min, m_range.max);
 		m_text.setString(text.str());
-		m_text.setPosition((sf::Vector2f(m_body.getPosition().x + m_body.getSize().x + 10, m_body.getPosition().y - m_body.getSize().y * 0.3f)));
+		m_text.setPosition((ui::Vec2f(m_body.getPosition().x + m_body.getSize().x + 10, m_body.getPosition().y - m_body.getSize().y * 0.3f)));
 
-		m_slider.setSize(sf::Vector2f(m_slider.getSize().x, m_body.getSize().y));
+		m_slider.setSize(ui::Vec2f(m_slider.getSize().x, m_body.getSize().y));
 		m_slider.setPosition(m_body.getPosition().x + map(m_value, 0.f, 1.f, 0.f, m_body.getSize().x - m_slider.getSize().x), m_body.getPosition().y);
 	}
 
@@ -87,7 +87,7 @@ namespace ui {
 		m_value = value;
 	}
 
-	void Slider::SetPosition(const sf::Vector2f& position)
+	void Slider::SetPosition(const ui::Vec2f& position)
 	{
 		m_body.setPosition(position);
 	}
@@ -97,12 +97,12 @@ namespace ui {
 		m_body.setPosition(x, y);
 	}
 
-	void Slider::SetSize(const float & width, const float & heigth)
+	void Slider::SetSize(const float& width, const float& heigth)
 	{
-		m_body.setSize(sf::Vector2f(width, heigth));
+		m_body.setSize(ui::Vec2f(width, heigth));
 	}
 
-	void Slider::SetSize(const sf::Vector2f & size)
+	void Slider::SetSize(const ui::Vec2f& size)
 	{
 		m_body.setSize(size);
 	}
@@ -112,7 +112,7 @@ namespace ui {
 		m_step = step;
 	}
 
-	void Slider::SetRange(const sf::Vector2f& range)
+	void Slider::SetRange(const ui::Vec2f& range)
 	{
 		m_range = range;
 	}
@@ -122,7 +122,7 @@ namespace ui {
 		m_showValue = show;
 	}
 
-	sf::Vector2f Slider::GetRange()
+	ui::Vec2f Slider::GetRange()
 	{
 		return m_range;
 	}
@@ -132,7 +132,7 @@ namespace ui {
 		return m_body;
 	}
 
-	sf::RectangleShape & Slider::GetHandle()
+	sf::RectangleShape& Slider::GetHandle()
 	{
 		return m_slider;
 	}
@@ -144,7 +144,7 @@ namespace ui {
 
 	float Slider::GetValue() const
 	{
-		return map(m_value, 0.f, 1.f, m_range.x, m_range.y);
+		return map(m_value, 0.f, 1.f, m_range.min, m_range.max);
 	}
 
 	bool Slider::IsPressed() const

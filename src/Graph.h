@@ -15,15 +15,16 @@ namespace ui {
 	{
 		float width = 2;
 		sf::Color color = sf::Color::Black;
+		bool cyclic = false;
 	};
 
 	class Graph : public ui::UIObject
 	{
 	private:
-		sf::Vector2f m_pos;
-		sf::Vector2f m_size;
-		sf::Vector2f m_xRange;
-		sf::Vector2f m_yRange;
+		ui::Vec2f m_pos;
+		ui::Vec2f m_size;
+		ui::Vec2f m_xRange;
+		ui::Vec2f m_yRange;
 		sf::Color m_backColor;
 		sf::Color m_axisColor;
 		float m_axisWidth;
@@ -31,32 +32,36 @@ namespace ui {
 
 		std::function<float(const float& x)> m_function;
 
-		std::vector<std::pair<std::vector<sf::Vector2f>, PlotDef>> m_plots;
-		std::vector<std::pair<std::pair<sf::Vector2f, sf::Vector2f>, ArrowDef>> m_arrows;
+		std::vector<std::pair<std::vector<ui::Vec2f>, PlotDef>> m_plots;
+		std::vector<std::pair<std::pair<ui::Vec2f, ui::Vec2f>, ArrowDef>> m_arrows;
 
-		sf::Vector2f CalculateAxisStep();
+		ui::Vec2f CalculateAxisStep();
 
 	public:
 		Graph(const std::string& id);
 
 
-		void SetPosition(const sf::Vector2f& pos);
-		void SetSize(const sf::Vector2f& size);
-		void SetRange(const sf::Vector2f& xRange, const sf::Vector2f& yRange);
+		void SetPosition(const ui::Vec2f& pos);
+		void SetSize(const ui::Vec2f& size);
+		void SetRange(const ui::Vec2f& xRange, const ui::Vec2f& yRange);
 		void SetBackgrowndColor(const sf::Color& color);
 		void SetAxisColor(const sf::Color& color);
 		void SetAxisWidth(const float& width);
 
-		sf::Vector2f MapPosToCoords(const sf::Vector2f& pos);
-		sf::Vector2f MapCoordsToPos(const sf::Vector2f& coords);
+		ui::Vec2f MapPosToCoords(const ui::Vec2f& pos);
+		ui::Vec2f MapCoordsToPos(const ui::Vec2f& coords);
 
 		void ClearAll();
 		void ClearArrows();
 		void ClearPlots();
 
+		ui::Vec2f GetPosition();
+		ui::Vec2f GetRange();
+		ui::Vec2f GetSize();
+
 		//void Recalculate();
-		void Plot(const std::vector<sf::Vector2f>& data, const PlotDef& props = PlotDef());
-		void Arrow(const sf::Vector2f& pos, const sf::Vector2f& size, const ArrowDef& props = ArrowDef());
+		void Plot(const std::vector<ui::Vec2f>& data, const PlotDef& props = PlotDef());
+		void Arrow(const ui::Vec2f& pos, const ui::Vec2f& size, const ArrowDef& props = ArrowDef());
 		
 		void Draw(sf::RenderWindow& window) override;
 

@@ -55,7 +55,7 @@ namespace ui {
 		text.setFillColor(able ? sf::Color(0, 0, 0) : sf::Color(200, 200, 200));
 	}
 
-	sf::Vector2f Button::GetPosition()
+	ui::Vec2f Button::GetPosition()
 	{
 		return shape.getPosition();
 	}

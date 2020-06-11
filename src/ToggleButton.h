@@ -32,7 +32,7 @@ namespace ui
 		// Get
 		bool GetAble();
 		std::function<void(ToggleButton* self , bool pressed)> GetClickEvent();
-		sf::Vector2f GetPosition();
+		ui::Vec2f GetPosition();
 
 		// Variables
 		sf::Text text;

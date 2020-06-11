@@ -4,19 +4,20 @@ namespace ui {
 
 	void Line::Reset()
 	{
-		sf::Vector2f delta = m_fPos - m_iPos;
+		ui::Vec2f delta = m_fPos - m_iPos;
 
-		float size = sqrt(pow(delta.x, 2) + pow(delta.y, 2));
+		float size = delta.Length();
 
 		shape.setSize({ size, m_width });
 		shape.setOrigin(0, shape.getSize().y / 2.f);
 		shape.setPosition(m_iPos);
 
-		float r = (float)(atan2f(delta.y, delta.x) * 180 / PI);
+		float r = delta.Angle();
+
 		shape.setRotation(r);
 	}
 
-	Line::Line(const std::string& id, const sf::Vector2f& iPos, const sf::Vector2f& fPos)
+	Line::Line(const std::string& id, const ui::Vec2f& iPos, const ui::Vec2f& fPos)
 		: UIObject(id)
 		, m_width(3)
 		, m_iPos(iPos)
@@ -27,12 +28,12 @@ namespace ui {
 		Reset();
 	}
 
-	void Line::Draw(sf::RenderWindow & window)
+	void Line::Draw(sf::RenderWindow& window)
 	{
 		window.draw(shape);
 	}
 
-	void Line::SetWidth(const float & width)
+	void Line::SetWidth(const float& width)
 	{
 		m_width = width;
 
@@ -54,24 +55,24 @@ namespace ui {
 		shape.setOutlineColor(color);
 	}
 
-	void Line::SetStartPos(const sf::Vector2f& pos)
+	void Line::SetStartPos(const ui::Vec2f& pos)
 	{
 		m_iPos = pos;
 		Reset();
 	}
 
-	sf::Vector2f Line::GetStartPos()
+	ui::Vec2f Line::GetStartPos()
 	{
 		return m_iPos;
 	}
 
-	void Line::SetEndPos(const sf::Vector2f& pos)
+	void Line::SetEndPos(const ui::Vec2f& pos)
 	{
 		m_fPos = pos;
 		Reset();
 	}
 
-	sf::Vector2f Line::GetEndPos()
+	ui::Vec2f Line::GetEndPos()
 	{
 		return m_fPos;
 	}
