@@ -1,7 +1,6 @@
 #include "Graph.h"
 #include "Line.h"
 #include <cmath>
-#include "../../utility/utility.h"
 #include "Global.h"
 
 namespace ui {
@@ -91,6 +90,46 @@ namespace ui {
 	void Graph::Arrow(const ui::Vec2f& pos, const ui::Vec2f& size, const ArrowDef& props)
 	{
 		m_arrows.push_back({ { pos, size }, props });
+	}
+
+	void Graph::Fit(const float& margin)
+	{
+		ui::Vec2f xRange = { INFINITY, -INFINITY };
+		ui::Vec2f yRange = { INFINITY, -INFINITY };
+
+		for (auto& [plot, prop] : m_plots)
+		{
+			for (const ui::Vec2f& p : plot)
+			{
+				xRange.min = std::min(xRange.min, p.x);
+				xRange.max = std::max(xRange.max, p.x);
+
+				yRange.min = std::min(yRange.min, p.y);
+				yRange.max = std::max(yRange.max, p.y);
+			}
+		}
+
+		for (auto& [arrow, prop] : m_arrows)
+		{
+			auto& [p, size] = arrow;
+
+			xRange.min = std::min(xRange.min, p.x);
+			xRange.max = std::max(xRange.max, p.x);
+
+			yRange.min = std::min(yRange.min, p.y);
+			yRange.max = std::max(yRange.max, p.y);
+		}
+
+		float xMargin = (xRange.max - xRange.min) * margin;
+		float yMargin = (yRange.max - yRange.min) * margin;
+
+		xRange.min -= xMargin;
+		xRange.max += xMargin;
+
+		yRange.min -= yMargin;
+		yRange.max += yMargin;
+
+		SetRange(xRange, yRange);
 	}
 
 	ui::Vec2f Graph::CalculateAxisStep()

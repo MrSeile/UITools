@@ -59,6 +59,8 @@ namespace ui {
 		ui::Vec2f GetRange();
 		ui::Vec2f GetSize();
 
+		void Fit(const float& margin = 0.05f);
+
 		//void Recalculate();
 		void Plot(const std::vector<ui::Vec2f>& data, const PlotDef& props = PlotDef());
 		void Arrow(const ui::Vec2f& pos, const ui::Vec2f& size, const ArrowDef& props = ArrowDef());
