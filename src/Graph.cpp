@@ -136,10 +136,11 @@ namespace ui {
 	{
 		ui::Vec2f n(1, 1);
 		ui::Vec2f e(1, 1);
-		ui::Vec2f delta(n.x * powf(10.f, e.x), n.y * powf(10.f, e.y));
+		float xDelta = n.x * powf(10.f, e.x);
+		float yDelta = n.y * powf(10.f, e.y);
 		while (true)
 		{
-			if (MapPosToCoords({ delta.x, 0 }).x - MapPosToCoords({ 0, 0 }).x < 100)
+			if (MapPosToCoords({ xDelta, 0 }).x - MapPosToCoords({ 0, 0 }).x < 100)
 			{
 				switch ((int)n.x)
 				{
@@ -154,9 +155,9 @@ namespace ui {
 					e.x += 1;
 				}
 
-				delta = { n.x * powf(10, e.x), n.y * powf(10, e.y) };
+				xDelta = n.x * powf(10, e.x);
 			}
-			else if (MapPosToCoords({ delta.x, 0 }).x - MapPosToCoords({ 0, 0 }).x > 500)
+			else if (MapPosToCoords({ xDelta, 0 }).x - MapPosToCoords({ 0, 0 }).x > 500)
 			{
 				switch ((int)n.x)
 				{
@@ -171,14 +172,14 @@ namespace ui {
 					n.x = 2;
 				}
 
-				delta = { n.x * powf(10, e.x), n.y * powf(10, e.y) };
+				xDelta = n.x * powf(10, e.x);
 			}
 			else
 				break;
 		}
 		while (true)
 		{
-			if (MapPosToCoords({ 0, delta.y }).y - MapPosToCoords({ 0, 0 }).y > -100)
+			if (MapPosToCoords({ 0, yDelta }).y - MapPosToCoords({ 0, 0 }).y > -100)
 			{
 				switch ((int)n.y)
 				{
@@ -193,9 +194,9 @@ namespace ui {
 					e.y += 1;
 				}
 
-				delta = { n.x * powf(10, e.x), n.y * powf(10, e.y) };
+				yDelta = n.y * powf(10, e.y);
 			}
-			else if (MapPosToCoords({ 0, delta.y }).y - MapPosToCoords({ 0, 0 }).y < -500)
+			else if (MapPosToCoords({ 0, yDelta }).y - MapPosToCoords({ 0, 0 }).y < -500)
 			{
 				switch ((int)n.y)
 				{
@@ -210,13 +211,13 @@ namespace ui {
 					n.y = 2;
 				}
 
-				delta = { n.x * powf(10, e.x), n.y * powf(10, e.y) };
+				yDelta = n.y * powf(10, e.y);
 			}
 			else
 				break;
 		}
 
-		return delta;
+		return { xDelta, yDelta };
 	}
 
 	void Graph::Draw(sf::RenderWindow& window)
