@@ -50,12 +50,12 @@ namespace ui {
 		}
 
 
-		T Length()
+		T Length() const
 		{
 			return sqrt(this->x * this->x + this->y * this->y);
 		}
 
-		T Angle()
+		T Angle() const
 		{
 			return (atan2(this->y, this->x) * (T)180) / (T)M_PI;
 		}
