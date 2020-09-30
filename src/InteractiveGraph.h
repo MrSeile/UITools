@@ -21,6 +21,7 @@ namespace ui {
 
 		void Update(const sf::RenderWindow& window) override;
 		void CheckInput(const sf::RenderWindow& window, ui::Event& e) override;
+		void SetZoom(const float& zoom);
 
 		void SetCenter(const ui::Vec2f& center);
 	};

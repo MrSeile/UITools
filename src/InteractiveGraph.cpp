@@ -78,6 +78,11 @@ namespace ui {
 		}
 	}
 
+	void InteractiveGraph::SetZoom(const float& zoom)
+	{
+		m_zoom = zoom;
+	}
+
 	void InteractiveGraph::SetCenter(const ui::Vec2f& center)
 	{
 		m_center = center;

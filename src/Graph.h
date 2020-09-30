@@ -18,6 +18,12 @@ namespace ui {
 		bool cyclic = false;
 	};
 
+	struct ScatterDef
+	{
+		float radius = 1;
+		sf::Color color = sf::Color::Black;
+	};
+
 	class Graph : public ui::UIObject
 	{
 	private:
@@ -32,6 +38,7 @@ namespace ui {
 
 		std::function<float(const float& x)> m_function;
 
+		std::vector<std::pair<std::vector<ui::Vec2f>, ScatterDef>> m_scatters;
 		std::vector<std::pair<std::vector<ui::Vec2f>, PlotDef>> m_plots;
 		std::vector<std::pair<std::pair<ui::Vec2f, ui::Vec2f>, ArrowDef>> m_arrows;
 
@@ -44,6 +51,8 @@ namespace ui {
 		void SetPosition(const ui::Vec2f& pos);
 		void SetSize(const ui::Vec2f& size);
 		void SetRange(const ui::Vec2f& xRange, const ui::Vec2f& yRange);
+		void SetXRange(const ui::Vec2f& range);
+		void SetYRange(const ui::Vec2f& range);
 		void SetBackgrowndColor(const sf::Color& color);
 		void SetAxisColor(const sf::Color& color);
 		void SetAxisWidth(const float& width);
@@ -62,6 +71,7 @@ namespace ui {
 		void Fit(const float& margin = 0.05f);
 
 		//void Recalculate();
+		void Scatter(const std::vector<ui::Vec2f>& data, const ScatterDef& props = ScatterDef());
 		void Plot(const std::vector<ui::Vec2f>& data, const PlotDef& props = PlotDef());
 		void Arrow(const ui::Vec2f& pos, const ui::Vec2f& size, const ArrowDef& props = ArrowDef());
 		

@@ -33,6 +33,16 @@ namespace ui {
 		m_yRange = yRange;
 	}
 
+	void Graph::SetXRange(const ui::Vec2f& range)
+	{
+		m_xRange = range;
+	}
+
+	void Graph::SetYRange(const ui::Vec2f& range)
+	{
+		m_yRange = range;
+	}
+
 	void Graph::SetBackgrowndColor(const sf::Color& color)
 	{
 		m_backColor = color;
@@ -82,6 +92,11 @@ namespace ui {
 		m_plots.clear();
 	}
 
+	void Graph::Scatter(const std::vector<ui::Vec2f>& data, const ScatterDef& props)
+	{
+		m_scatters.push_back({ data, props });
+	}
+
 	void Graph::Plot(const std::vector<ui::Vec2f>& data, const PlotDef& props)
 	{
 		m_plots.push_back({ data, props });
@@ -96,6 +111,18 @@ namespace ui {
 	{
 		ui::Vec2f xRange = { INFINITY, -INFINITY };
 		ui::Vec2f yRange = { INFINITY, -INFINITY };
+
+		for (auto& [scatter, prop] : m_scatters)
+		{
+			for (const ui::Vec2f& p : scatter)
+			{
+				xRange.min = std::min(xRange.min, p.x);
+				xRange.max = std::max(xRange.max, p.x);
+
+				yRange.min = std::min(yRange.min, p.y);
+				yRange.max = std::max(yRange.max, p.y);
+			}
+		}
 
 		for (auto& [plot, prop] : m_plots)
 		{
@@ -272,6 +299,32 @@ namespace ui {
 		y.SetColor(m_axisColor);
 		y.SetWidth(m_axisWidth);
 		y.Draw(window);
+
+		// Draw scatters
+		for (auto& [scatter, prop] : m_scatters)
+		{
+			//ui::Vec2f prevPos = MapPosToCoords(scatter[0]);
+			for (int i = 0; i < scatter.size(); i++)
+			{
+				//ui::Vec2f newPos = MapPosToCoords(scatter[i]);
+				//ui::Vec2f delta = newPos - prevPos;
+				ui::Vec2f pos = scatter[i];
+
+				//if (delta.Length() > 100)
+				if (!(pos.x < m_xRange.min || pos.x > m_xRange.max || pos.y < m_yRange.min || pos.y > m_yRange.max))
+				{
+					sf::CircleShape shape;
+					shape.setRadius(prop.radius);
+					shape.setOrigin(prop.radius, prop.radius);
+					shape.setPosition(pos);
+					shape.setFillColor(prop.color);
+
+					window.draw(shape);
+
+					//prevPos = newPos;
+				}
+			}
+		}
 
 		// Draw plots
 		for (auto&[plot, prop] : m_plots)
