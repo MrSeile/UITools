@@ -2,8 +2,6 @@
 
 namespace ui {
 
-
-
 	Circle::Circle(const std::string& id)
 		: UIObject(id)
 	{

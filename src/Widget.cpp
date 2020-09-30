@@ -11,7 +11,6 @@ namespace ui {
 	{
 	}
 
-	// Other
 	void Widget::Clear()
 	{
 		m_objects.clear();
@@ -27,7 +26,7 @@ namespace ui {
 		return m_objects;
 	}
 
-	UIObject * Widget::GetUIObject(const std::string& id)
+	UIObject* Widget::GetUIObject(const std::string& id)
 	{
 		for (UIObject* x : m_objects)
 		{
