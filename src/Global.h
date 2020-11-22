@@ -35,7 +35,10 @@ namespace ui
 
 	inline float snap(const float& value, const float& step)
 	{
-		return roundf(value / step) * step;
+		if (step == 0)
+			return value;
+		else
+			return roundf(value / step) * step;
 	}
 
 	template<typename T>

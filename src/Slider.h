@@ -14,7 +14,7 @@ namespace ui
 		float m_offset = 0;
 		bool m_showValue = true;
 		ui::Vec2f m_range = { 0, 255 };
-		float m_step = 0.1f;
+		float m_step = 0.f;
 
 		sf::RectangleShape m_slider;
 		sf::Text m_text;
