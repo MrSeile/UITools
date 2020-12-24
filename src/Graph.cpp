@@ -338,11 +338,15 @@ namespace ui {
 
 				if (delta.Length() > 5.f)
 				{
-					ui::Line l("l", prevPos, newPos);
-					l.SetWidth(prop.width);
-					l.SetColor(prop.color);
+					if (!((prevPos.x - m_pos.x < 0 || prevPos.x - m_pos.x > m_size.x || prevPos.y - m_pos.y < 0 || prevPos.y - m_pos.y > m_size.y) &&
+						  (newPos.x - m_pos.x < 0 || newPos.x - m_pos.x > m_size.x || newPos.y - m_pos.y < 0 || newPos.y - m_pos.y > m_size.y)))
+					{
+						ui::Line l("l", prevPos, newPos);
+						l.SetWidth(prop.width);
+						l.SetColor(prop.color);
 
-					l.Draw(window);
+						l.Draw(window);
+					}
 
 					prevPos = newPos;
 				}
