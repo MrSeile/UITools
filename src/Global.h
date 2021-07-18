@@ -28,6 +28,11 @@ namespace ui
 	typedef Vec2<int> Vec2i;
 	typedef Vec2<uint> Vec2u;
 
+	inline double map(const double& value, const double& inputMin, const double& inputMax, const double& outputMin, const double& outputMax)
+	{
+		return outputMin + ((outputMax - outputMin) / (inputMax - inputMin)) * (value - inputMin);
+	}
+
 	inline float map(const float& value, const float& inputMin, const float& inputMax, const float& outputMin, const float& outputMax)
 	{
 		return outputMin + ((outputMax - outputMin) / (inputMax - inputMin)) * (value - inputMin);

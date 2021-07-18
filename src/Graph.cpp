@@ -336,7 +336,7 @@ namespace ui {
 
 				ui::Vec2f delta = newPos - prevPos;
 
-				if (delta.Length() > 5.f)
+				if (delta.Length() > 5.f || prop.optimize)
 				{
 					if (!((prevPos.x - m_pos.x < 0 || prevPos.x - m_pos.x > m_size.x || prevPos.y - m_pos.y < 0 || prevPos.y - m_pos.y > m_size.y) &&
 						  (newPos.x - m_pos.x < 0 || newPos.x - m_pos.x > m_size.x || newPos.y - m_pos.y < 0 || newPos.y - m_pos.y > m_size.y)))

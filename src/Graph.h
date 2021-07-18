@@ -16,6 +16,7 @@ namespace ui {
 		float width = 2;
 		sf::Color color = sf::Color::Black;
 		bool cyclic = false;
+		bool optimize = true;
 	};
 
 	struct ScatterDef
