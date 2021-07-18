@@ -4,14 +4,14 @@ namespace ui {
 
 	Widget::Widget()
 	{
-		Clear();
+		ClearAll();
 	}
 
 	Widget::~Widget()
 	{
 	}
 
-	void Widget::Clear()
+	void Widget::ClearAll()
 	{
 		m_objects.clear();
 	}

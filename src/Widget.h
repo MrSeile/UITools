@@ -28,7 +28,7 @@ namespace ui
 		void CheckInput(const sf::RenderWindow& window, ui::Event& e);
 		void Draw(sf::RenderWindow& window);
 		void BeginPlay();
-		void Clear();
+		void ClearAll();
 
 		void AddObject(ui::UIObject* newObject);
 
@@ -37,8 +37,20 @@ namespace ui
 		template<typename T>
 		T* Get(const std::string& id);
 
+		template<typename T>
+		void Clear();
+
 		ui::UIObject* GetUIObject(const std::string& id);
 	};
+
+	template<typename T>
+	void Widget::Clear()
+	{
+		m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(), [](ui::UIObject* o)
+		{
+			return dynamic_cast<T*>(o);
+		}), m_objects.end());
+	}
 
 	template<typename T>
 	inline T * Widget::Get(const std::string& id)
