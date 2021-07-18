@@ -15,10 +15,14 @@ namespace ui
 		bool m_showValue = true;
 		ui::Vec2f m_range = { 0, 255 };
 		float m_step = 0.f;
+		uint m_textPrecision = 2;
 
 		sf::RectangleShape m_slider;
 		sf::Text m_text;
 		sf::RectangleShape m_body;
+
+		bool m_hasCustomReleasedFunction = false;
+		std::function<void(UIObject* self)> m_releasedFunction;
 
 	public:
 		Slider(const std::string& id, const sf::Font& font);
@@ -28,6 +32,8 @@ namespace ui
 		void Update(const sf::RenderWindow& window) override;
 		void Draw(sf::RenderWindow& window) override;
 
+		void SetReleasedFunction(const std::function<void(UIObject* self)>& function);
+
 		// Set
 		void SetValue(const float& value);
 		void SetPosition(const ui::Vec2f& position);
@@ -36,6 +42,7 @@ namespace ui
 		void SetSize(const ui::Vec2f& size);
 		void SetStep(const float& step);
 		void SetRange(const ui::Vec2f& range);
+		void SetTextPrecision(uint textPrecision);
 
 		void ShowValue(bool show);
 

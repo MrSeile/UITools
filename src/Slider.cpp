@@ -33,7 +33,13 @@ namespace ui {
 		{
 			if (e.key.code == sf::Mouse::Left)
 			{
-				m_pressed = false;
+				if (m_pressed)
+				{
+					if (m_hasCustomReleasedFunction)
+						m_releasedFunction(this);
+
+					m_pressed = false;
+				}
 			}
 		}
 	}
@@ -63,7 +69,7 @@ namespace ui {
 
 		m_text.setCharacterSize((uint)(m_body.getSize().y + m_body.getSize().y * 0.3f));
 		std::stringstream text;
-		text << std::fixed << std::setprecision(3) << map(m_value, 0.f, 1.f, m_range.min, m_range.max);
+		text << std::fixed << std::setprecision(m_textPrecision) << map(m_value, 0.f, 1.f, m_range.min, m_range.max);
 		m_text.setString(text.str());
 		m_text.setPosition((ui::Vec2f(m_body.getPosition().x + m_body.getSize().x + 10, m_body.getPosition().y - m_body.getSize().y * 0.3f)));
 
@@ -82,9 +88,15 @@ namespace ui {
 		window.draw(m_slider);
 	}
 
+	void Slider::SetReleasedFunction(const std::function<void(UIObject* self)>& function)
+	{
+		m_hasCustomReleasedFunction = true;
+		m_releasedFunction = function;
+	}
+
 	void Slider::SetValue(const float& value)
 	{
-		m_value = value;
+		m_value = map(value, m_range.min, m_range.max, 0, 1);
 	}
 
 	void Slider::SetPosition(const ui::Vec2f& position)
@@ -115,6 +127,11 @@ namespace ui {
 	void Slider::SetRange(const ui::Vec2f& range)
 	{
 		m_range = range;
+	}
+
+	void Slider::SetTextPrecision(uint textPrecision)
+	{
+		m_textPrecision = textPrecision;
 	}
 
 	void Slider::ShowValue(bool show)
